@@ -3,11 +3,12 @@ import org.junit.Test;
 
 public class CabInvoiceGeneratorTest
 {
+    InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+
     //Test For Calculating Fare
     @Test
     public void givenDistanceAndTime_InvoiceGenerator_shouldReturnTotalFare()
     {
-      InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
       double distance=2.0;
       int time=5;
       double fare = invoiceGenerator.calculateFare(distance,time);
@@ -18,7 +19,6 @@ public class CabInvoiceGeneratorTest
     @Test
     public void givenDistanceAndTime_invoiceGenretaor_shouldReturnMinimumFare()
     {
-        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         double distance=0.1;
         int time=1;
         double fare = invoiceGenerator.calculateFare(distance,time);
@@ -29,7 +29,6 @@ public class CabInvoiceGeneratorTest
     @Test
     public void givenMultipleRides_shouldReturnTotalFare()
     {
-        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         Ride[] rides = { new Ride(2.0,1),
                        new Ride(0.1,1)};
         double fare = invoiceGenerator.calculateFare(rides);
