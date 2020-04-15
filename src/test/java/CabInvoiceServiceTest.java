@@ -11,7 +11,7 @@ public class CabInvoiceServiceTest
     {
       double distance=2.0;
       int time=5;
-      double fare = invoiceService.addRides(distance,time);
+      double fare = invoiceService.calculateFare(distance,time);
       Assert.assertEquals(25,fare,0.0);
     }
 
@@ -21,7 +21,7 @@ public class CabInvoiceServiceTest
     {
         double distance=0.1;
         int time=1;
-        double fare = invoiceService.addRides(distance,time);
+        double fare = invoiceService.calculateFare(distance,time);
         Assert.assertEquals(5,fare,0.00);
     }
 
@@ -31,7 +31,7 @@ public class CabInvoiceServiceTest
     {
         Ride[] rides = { new Ride(2.0,5),
                        new Ride(0.1,1)};
-        InvoiceSummary summary = invoiceService.addRides(rides);
+        InvoiceSummary summary = invoiceService.calculateFare(rides);
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.00);
         Assert.assertEquals(expectedInvoiceSummary,summary);
 
