@@ -14,4 +14,13 @@ public class InvoiceGenerator {
             return totalFare;
         }
     }
+
+    public double calculateFare(Ride[] rides) { //Non Primitive data
+        double totalFare = 0;
+        for (Ride ride:rides)
+        {
+           totalFare = totalFare + this.calculateFare(ride.distance,ride.time);
+        }
+        return totalFare;
+    }
 }
