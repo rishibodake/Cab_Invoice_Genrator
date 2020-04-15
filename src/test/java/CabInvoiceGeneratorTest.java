@@ -25,25 +25,14 @@ public class CabInvoiceGeneratorTest
         Assert.assertEquals(5,fare,0.00);
     }
 
-    //Test For Calculating Fare For Multiple Rides
-    @Test
-    public void givenMultipleRides_shouldReturnTotalFare()
-    {
-        Ride[] rides = { new Ride(2.0,1),
-                       new Ride(0.1,1)};
-        double fare = invoiceGenerator.calculateFare(rides);
-        Assert.assertEquals(26,fare,0.0);
-    }
-
     //Test For Return Enhanced Invoice Summary
     @Test
     public void givenMultipleRides_shouldReturnInvoiceSummary()
     {
-        Ride[] rides = { new Ride(2.0,1),
-                new Ride(0.1,1)};
-        InvoiceSummary invoiceSummary= invoiceGenerator.calculateFare(rides);
-        Assert.assertEquals(26,fare,0.0);
+        Ride[] rides = { new Ride(2.0,5),
+                       new Ride(0.1,1)};
+        InvoiceSummary summary = invoiceGenerator.calculateFare(rides);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.00);
+        Assert.assertEquals(expectedInvoiceSummary,summary);
     }
-
-
 }

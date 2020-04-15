@@ -10,12 +10,12 @@ public class InvoiceGenerator {
         return Math.max(totalFare, MINIMUM_COST);
     }
 
-    public double calculateFare(Ride[] rides) { //Non Primitive data
+    public InvoiceSummary calculateFare(Ride[] rides) { //Non Primitive data
         double totalFare = 0;
         for (Ride ride:rides)
         {
            totalFare = totalFare + this.calculateFare(ride.distance,ride.time);
         }
-        return totalFare;
+        return new InvoiceSummary(rides.length,totalFare);
     }
 }
