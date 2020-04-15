@@ -34,5 +34,7 @@ public class CabInvoiceGeneratorTest
         InvoiceSummary summary = invoiceGenerator.calculateFare(rides);
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.00);
         Assert.assertEquals(expectedInvoiceSummary,summary);
+
     }
+
 }
