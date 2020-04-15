@@ -1,9 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CabInvoiceGeneratorTest
+public class CabInvoiceServiceTest
 {
-    InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+    InvoiceService invoiceService = new InvoiceService();
 
     //Test For Calculating Fare
     @Test
@@ -11,7 +11,7 @@ public class CabInvoiceGeneratorTest
     {
       double distance=2.0;
       int time=5;
-      double fare = invoiceGenerator.calculateFare(distance,time);
+      double fare = invoiceService.calculateFare(distance,time);
       Assert.assertEquals(25,fare,0.0);
     }
 
@@ -21,7 +21,7 @@ public class CabInvoiceGeneratorTest
     {
         double distance=0.1;
         int time=1;
-        double fare = invoiceGenerator.calculateFare(distance,time);
+        double fare = invoiceService.calculateFare(distance,time);
         Assert.assertEquals(5,fare,0.00);
     }
 
@@ -31,9 +31,23 @@ public class CabInvoiceGeneratorTest
     {
         Ride[] rides = { new Ride(2.0,5),
                        new Ride(0.1,1)};
-        InvoiceSummary summary = invoiceGenerator.calculateFare(rides);
+        InvoiceSummary summary = invoiceService.calculateFare(rides);
         InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.00);
         Assert.assertEquals(expectedInvoiceSummary,summary);
+
+    }
+
+    //Test For Return Invoice Summary after giving UserId
+    @Test
+    public void givenUserIdAndRides_shouldReturnInvoiceSummary()
+    {
+        String userId = "abc@xyz.com";
+        Ride[] rides = { new Ride(2.0,5),
+                new Ride(0.1,1)};
+        invoiceService.addRides(userId,rides);
+        InvoiceSummary summary = invoiceService.getInvoiceSummary(userId);
+        InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(2,30.00);
+        Assert.assertEquals(expectedInvoiceSummary,summary); 
 
     }
 
