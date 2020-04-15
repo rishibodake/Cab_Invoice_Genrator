@@ -6,6 +6,6 @@ public class CabInvoiceGeneratorTest
     @Test
     public void givenDistanceAndTime_InvoiceGenerator_shouldReturnTrue()
     {
-
+        new InvoiceGenerator();
     }
 }
